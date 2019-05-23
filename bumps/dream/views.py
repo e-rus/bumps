@@ -13,7 +13,8 @@ import numpy as np
 from numpy import arange, squeeze, linspace, meshgrid, vstack, inf
 from scipy.stats import kde
 
-from . import corrplot,build_plot_layout
+from . import corrplot
+from . import build_plot_layout
 from .formatnum import format_value
 from .stats import var_stats, format_vars, save_vars
 
@@ -32,7 +33,7 @@ def plot_all(state, portion=1.0, figfile=None):
     figure()
     plot_vars(draw, all_vstats)
     if state.title:
-        suptitle(state.title,x=0,y=1,va='top',ha='left')
+        suptitle(state.title, x=0, y=1, va='top', ha='left')
     if figfile is not None:
         savefig(figfile+"-vars"+figext)
 
@@ -172,7 +173,7 @@ def _make_fig_colorbar(logp):
     #vmin,vmax = -max(logp),-min(logp)
 
     fig = pylab.gcf()
-    ax=fig.axes[-1]
+    ax = fig.axes[-1]
     cmap = mpl.cm.copper
 
     # Set the colormap and norm to correspond to the data for which
@@ -201,10 +202,10 @@ def _make_fig_colorbar(logp):
     #cb.set_label('negative log likelihood')
 
     cbar_box=ax.get_position().bounds
-    fig.text(cbar_box[0],cbar_box[1],
-             '{:.3G}'.format(vmin),va='top')
-    fig.text(cbar_box[0],cbar_box[1]+cbar_box[3],
-             '{:.3G}'.format(vmax),va='bottom')
+    fig.text(cbar_box[0], cbar_box[1],
+             '{:.3G}'.format(vmin), va='top')
+    fig.text(cbar_box[0], cbar_box[1] + cbar_box[3],
+             '{:.3G}'.format(vmax), va='bottom')
 
     return vmin, vmax, cmap
 
